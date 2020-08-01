@@ -11,9 +11,7 @@ const Layout = ({ children }) => {
     <>
       <div className="app-container">
         <SimpleReactLightbox>
-          <main className="h-screen mt-24 text-center bg-gray-200 ">
-            {children}
-          </main>
+          <main className="mt-24 text-center bg-gray-200 ">{children}</main>
         </SimpleReactLightbox>
         <Footer></Footer>
         <Stn>
