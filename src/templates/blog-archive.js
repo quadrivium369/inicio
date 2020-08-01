@@ -29,7 +29,7 @@ const Item = styled.div`
 `
 
 const Container = styled.div`
-  ${tw`grid max-w-6xl grid-cols-3 gap-4 pt-3 mx-auto `}
+  ${tw`grid max-w-6xl gap-4 p-3 mx-auto md:grid-cols-3 `}
 `
 
 const BlogArchive = ({ data, pageContext, location }) => {
