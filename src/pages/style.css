@@ -1,6 +1,5 @@
 html,
 body,
-#___gatsby,
 canvas {
   height: 100%;
   margin: 0;
@@ -8,11 +7,8 @@ canvas {
   width: 100%;
 }
 
-body {
-  background: black;
-  cursor: grab;
-}
-
-body:active {
-  cursor: grabbing;
+html,
+body,
+canvas {
+  height: 100vh !important;
 }
