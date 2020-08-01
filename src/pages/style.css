@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 html,
 body,
 canvas {
@@ -12,3 +13,5 @@ body,
 canvas {
   height: 100vh !important;
 }
+
+/* purgecss end ignore */
