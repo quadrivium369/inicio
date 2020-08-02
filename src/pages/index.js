@@ -1,10 +1,16 @@
 import React from "react"
+import { Link } from "gatsby"
 import Layout from "../components/layout"
 //import tw from "twin.macro"
 //import styled from "@emotion/styled"
-import { Player, BigPlayButton } from "video-react"
+import {
+  Player,
+  BigPlayButton,
+  ControlBar,
+  PlayToggle,
+  VolumeMenuButton,
+} from "video-react"
 import "../components/VideoReact.css"
-import { Link } from "gatsby"
 
 export default () => {
   return (
@@ -15,6 +21,10 @@ export default () => {
           className="shadow-md"
         >
           <BigPlayButton position="center" />
+          <ControlBar autoHide={true} disableDefaultControls={true}>
+            <PlayToggle />
+            <VolumeMenuButton disabled />
+          </ControlBar>
         </Player>
         <Link
           to={`/colecciones/`}
