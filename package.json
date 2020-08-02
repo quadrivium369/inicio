@@ -57,7 +57,8 @@
     "tailwindcss": "^1.6.0",
     "twin.macro": "^1.7.0",
     "react-three-fiber": "^2.3.9",
-    "three": "^0.108.0"
+    "three": "^0.108.0",
+    "video-react": "^0.14.1"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

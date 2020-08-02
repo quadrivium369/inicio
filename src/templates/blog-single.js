@@ -3,43 +3,60 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Link } from "gatsby"
 import { kebabCase } from "lodash"
-//import "./post.css"
+import "../components/VideoReact.css"
 
 import SEO from "../components/seo"
+//import Article from "../components/Article"
 
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
-//import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-
+import { Player, BigPlayButton } from "video-react"
+//import ReactTooltip from "react-tooltip"
 const Bold = ({ children }) => <span className="font-bold">{children}</span>
-const Text = ({ children }) => <p className="my-3 text-lg">{children}</p>
-const website_url = "https://www.lnqradio.com"
+const Text = ({ children }) => <p>{children}</p>
+const website_url = "https://www.cooparaje.com.ar"
 const options = {
   renderMark: {
     [MARKS.BOLD]: text => <Bold>{text}</Bold>,
     [MARKS.CODE]: embedded => (
-      <div dangerouslySetInnerHTML={{ __html: embedded }} />
+      <div>
+        <div dangerouslySetInnerHTML={{ __html: embedded }} />
+      </div>
     ),
   },
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: node => {
       if (!node.data || !node.data.target.fields) {
         return <span className="hidden">Embedded asset is broken</span>
+      } else {
+        if (node.data.target.fields.file["es-AR"].contentType === "video/mp4") {
+          return (
+            <div>
+              <Player src={node.data.target.fields.file["es-AR"].url}>
+                <BigPlayButton position="center" />
+              </Player>
+            </div>
+          )
+        } else {
+          return (
+            <div>
+              <div className="post-image">
+                <img
+                  className="w-full"
+                  alt={node.data.target.fields.title["es-AR"]}
+                  src={node.data.target.fields.file["es-AR"].url}
+                />
+              </div>
+            </div>
+          )
+        }
       }
-      return (
-        <div className="post-image">
-          <img
-            className="w-full"
-            alt={node.data.target.fields.title["es-AR"]}
-            src={node.data.target.fields.file["es-AR"].url}
-          />
-        </div>
-      )
     },
     [INLINES.HYPERLINK]: node => {
       return (
         <a
           href={node.data.uri}
-          className="font-bold border-b border-red-500 hover:bg-red-700 hover:text-white"
+          className="inline-block pb-0 font-bold border-b border-indigo-500 hover:bg-indigo-700 hover:text-white"
           target={`${
             node.data.uri.startsWith(website_url) ? "_self" : "_blank"
           }`}
@@ -57,6 +74,9 @@ const options = {
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.contentfulColeccion
+  const Article =
+    data.contentfulColeccion.childContentfulColeccionTextoPrincipalRichTextNode
+
   const { prev, next } = pageContext
   return (
     <Layout location={location}>
@@ -64,23 +84,36 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       <div className="max-w-2xl mx-auto text-4xl">
         <nav style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-            {prev && (
-              <Link to={`/colecciones/${kebabCase(prev.slug)}/`} rel="prev">
+            {next && (
+              <Link to={`/colecciones/${kebabCase(next.slug)}/`} rel="next">
                 ←
               </Link>
             )}
           </div>
-
           <div style={{ justifySelf: "flex-end" }}>
-            {next && (
-              <Link to={`/colecciones/${kebabCase(next.slug)}/`} rel="next">
+            {prev && (
+              <Link to={`/colecciones/${kebabCase(prev.slug)}/`} rel="prev">
                 →
               </Link>
             )}
           </div>
         </nav>
       </div>
-      <h1 className="pt-12 text-4xl">Página de {post.title}</h1>
+      <div className="pt-12 mt-6">
+        <h1 className="py-3 text-3xl font-bold text-indigo-500 border-t border-indigo-500">
+          {post.title}
+        </h1>
+        <div className="w-full max-w-2xl m-auto mt-2 article" id={post.slug}>
+          {Article ? (
+            <div>
+              {documentToReactComponents(
+                post.childContentfulColeccionTextoPrincipalRichTextNode.json,
+                options
+              )}
+            </div>
+          ) : null}
+        </div>
+      </div>
     </Layout>
   )
 }
@@ -92,6 +125,9 @@ export const pageQuery = graphql`
     contentfulColeccion(slug: { eq: $slug }) {
       slug
       title
+      childContentfulColeccionTextoPrincipalRichTextNode {
+        json
+      }
     }
   }
 `
