@@ -13,23 +13,23 @@ const PageTitle = styled.h1`
 `
 
 const Item = styled.div`
-  ${tw`px-8 py-12 text-center transition-all duration-500 ease-in-out bg-white shadow-md`}
+  ${tw`px-8 py-12 text-center transition-all duration-500 ease-in-out bg-indigo-600 shadow-md`}
 
   a {
-    ${tw`font-mono text-4xl font-bold text-indigo-600 transition-all duration-500 ease-in-out `}
+    ${tw`font-mono text-4xl font-bold text-white transition-all duration-500 ease-in-out `}
   }
 
   &:hover {
-    ${tw`bg-indigo-600 shadow-lg`}
+    ${tw`bg-white shadow-lg`}
 
     a {
-      ${tw`text-white `}
+      ${tw`text-indigo-600 `}
     }
   }
 `
 
 const Container = styled.div`
-  ${tw`grid max-w-6xl gap-4 p-3 mx-auto md:grid-cols-3 `}
+  ${tw`grid max-w-4xl gap-4 p-3 mx-auto md:grid-cols-3 `}
 `
 
 const BlogArchive = ({ data, pageContext, location }) => {

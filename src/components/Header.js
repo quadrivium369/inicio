@@ -40,7 +40,7 @@ const Header = ({ siteTitle }) => (
             return (
               <Link
                 key={i}
-                activeClassName="text-indigo-500"
+                activeClassName="text-indigo-600"
                 to={route.slug}
                 className="font-mono text-xl font-bold text-black"
               >
@@ -70,12 +70,23 @@ const Nav = styled.nav`
 `
 
 const HeaderContainer = styled.header`
-  ${tw`z-50 px-2 py-0 bg-white md:py-0 `}
+  ${tw`z-50 px-2 py-0 transition-all duration-500 bg-white md:py-0 `}
   background: rgba(255,255,255,.95);
+
+  a {
+  }
+
+  .domFiber & {
+    background: transparent !important;
+
+    a {
+      color: #fff !important;
+    }
+  }
 `
 
 const InnerHeader = styled.div`
-  ${tw`relative flex items-center justify-between max-w-6xl px-0 m-auto md:py-3 sm:pr-6 md:pr-0`}
+  ${tw`relative flex items-center justify-between max-w-3xl px-0 m-auto md:py-3 sm:pr-6 md:pr-0`}
 `
 
 const Logo = styled.div`

@@ -15,4 +15,8 @@ canvas {
   height: 100vh !important;
 }
 
+.domFiber canvas {
+  @apply bg-black !important;
+}
+
 /* purgecss end ignore */

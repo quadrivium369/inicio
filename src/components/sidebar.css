@@ -63,7 +63,7 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  @apply bg-gray-500;
+  @apply bg-gray-900;
   height: 2px !important;
 }
 

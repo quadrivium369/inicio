@@ -15,7 +15,11 @@ import { Player, BigPlayButton } from "video-react"
 const Bold = ({ children }) => (
   <span className="font-mono font-bold">{children}</span>
 )
-const Text = ({ children }) => <p className="font-mono">{children}</p>
+const Text = ({ children }) => (
+  <p className="w-full font-mono text-2xl text-left text-gray-900">
+    {children}
+  </p>
+)
 const website_url = "https://www.cooparaje.com.ar"
 const options = {
   renderMark: {
@@ -44,7 +48,7 @@ const options = {
             <div>
               <div className="post-image">
                 <img
-                  className="w-full"
+                  className="w-full max-w-md mx-auto"
                   alt={node.data.target.fields.title["es-AR"]}
                   src={node.data.target.fields.file["es-AR"].url}
                 />
@@ -58,7 +62,7 @@ const options = {
       return (
         <a
           href={node.data.uri}
-          className="inline-block pb-0 font-bold border-b border-indigo-500 hover:bg-indigo-700 hover:text-white"
+          className="inline-block pb-0 font-bold border-b border-indigo-300 hover:bg-indigo-600 hover:text-white"
           target={`${
             node.data.uri.startsWith(website_url) ? "_self" : "_blank"
           }`}
@@ -83,9 +87,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   return (
     <Layout location={location}>
       <SEO title="Post" />
-      <div className="max-w-4xl p-2 mx-auto bg-indigo-100 md:p-12">
+      <div className="max-w-4xl p-2 mx-auto bg-white md:p-12">
         <div className="my-12">
-          <h1 className="py-3 font-mono text-3xl font-bold text-indigo-500 border-t border-indigo-500">
+          <h1 className="py-3 mb-3 font-mono text-3xl font-bold text-left text-indigo-600 border-b-2 border-indigo-600">
             {post.title}
           </h1>
           <div className="w-full mt-2 article" id={post.slug}>
@@ -99,7 +103,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             )}
           </div>
         </div>
-        <div className="py-12 text-4xl bg-indigo-100">
+        <div className="py-12 text-4xl">
           <nav style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               {next && (

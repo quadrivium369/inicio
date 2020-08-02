@@ -1,9 +1,18 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, Suspense } from "react"
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { Canvas, extend, useThree, useRender } from "react-three-fiber"
+import { Helmet } from "react-helmet"
+
+import {
+  Canvas,
+  useFrame,
+  extend,
+  useThree,
+  useRender,
+} from "react-three-fiber"
 import { useSpring, a } from "react-spring/three"
+import { PositionalAudio, Text, Stars } from "drei"
 
 import "./style.css"
 
@@ -22,6 +31,7 @@ const SpaceShip = () => {
 const Controls = () => {
   const orbitRef = useRef()
   const { camera, gl } = useThree()
+  //useFrame allows us to re-render/update rotation on each frame
 
   useRender(() => {
     orbitRef.current.update()
@@ -57,6 +67,10 @@ const Box = () => {
     >
       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
       <a.meshPhysicalMaterial attach="material" color={props.color} />
+
+      <Suspense fallback={null}>
+        <PositionalAudio url="https://assets.ctfassets.net/mai25em38k9q/2qHoL9NrIDZWOJylxocaDX/cf74660368fceb495674db96b500267e/MFL-Flaming-Lynch.mp3" />
+      </Suspense>
     </a.mesh>
   )
 }
@@ -66,6 +80,9 @@ export default () => {
 
   return (
     <>
+      <Helmet>
+        <body className="domFiber" />
+      </Helmet>
       {isBrowser && (
         <Canvas
           camera={{ position: [0, 15, 0] }}

@@ -15,7 +15,7 @@ const Footer = ({ children }) => {
             </span>
             <a
               rel="noopener noreferrer"
-              className="border-b border-gray-500"
+              className="border-b border-gray-600"
               target="_blank"
               href="mailto:hola@cuchaestudio.com"
             >
