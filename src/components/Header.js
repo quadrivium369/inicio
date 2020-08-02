@@ -30,7 +30,7 @@ const Header = ({ siteTitle }) => (
         <Logo>
           <Link
             to="/"
-            className="block py-6 font-mono text-xl font-bold text-black uppercase"
+            className="block py-6 font-mono text-xl font-bold tracking-widest text-black uppercase"
           >
             {siteTitle}
           </Link>
@@ -42,7 +42,7 @@ const Header = ({ siteTitle }) => (
                 key={i}
                 activeClassName="text-indigo-600"
                 to={route.slug}
-                className="font-mono text-xl font-bold text-black"
+                className="font-mono text-xl font-bold tracking-widest text-black"
               >
                 {route.title}
               </Link>
