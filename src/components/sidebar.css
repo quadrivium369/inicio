@@ -82,7 +82,7 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #333;
+  background: #fff;
 }
 
 body.dark .bm-cross {

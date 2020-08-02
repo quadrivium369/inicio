@@ -23,9 +23,9 @@ const Navigation = ({ closeMenu }) => (
         <Link
           key={i}
           onClick={closeMenu}
-          activeClassName="text-indigo-300 "
+          activeClassName="text-indigo-200 "
           to={route.slug}
-          className="my-2 font-mono text-base font-bold text-white cursor-pointer hover:text-indigo-800"
+          className="my-2 font-mono text-base font-bold text-white uppercase cursor-pointer hover:text-indigo-200"
         >
           {route.title}
         </Link>

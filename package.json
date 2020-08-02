@@ -53,11 +53,13 @@
     "react-icons": "^3.10.0",
     "react-reveal": "^1.2.2",
     "react-spring": "^8.0.27",
+    "react-three-fiber": "^2.3.9",
     "simple-react-lightbox": "^3.1.2",
     "tailwindcss": "^1.6.0",
-    "twin.macro": "^1.7.0",
-    "react-three-fiber": "^2.3.9",
     "three": "^0.108.0",
+    "twin.macro": "^1.7.0",
+    "typeface-fanwood-text": "0.0.72",
+    "typeface-quattrocento": "0.0.72",
     "video-react": "^0.14.1"
   },
   "devDependencies": {

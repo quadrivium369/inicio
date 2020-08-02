@@ -12,8 +12,10 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
 import { Player, BigPlayButton } from "video-react"
 //import ReactTooltip from "react-tooltip"
-const Bold = ({ children }) => <span className="font-bold">{children}</span>
-const Text = ({ children }) => <p>{children}</p>
+const Bold = ({ children }) => (
+  <span className="font-mono font-bold">{children}</span>
+)
+const Text = ({ children }) => <p className="font-mono">{children}</p>
 const website_url = "https://www.cooparaje.com.ar"
 const options = {
   renderMark: {
@@ -81,37 +83,39 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   return (
     <Layout location={location}>
       <SEO title="Post" />
-      <div className="max-w-2xl mx-auto text-4xl">
-        <nav style={{ display: "flex", justifyContent: "space-between" }}>
-          <div>
-            {next && (
-              <Link to={`/colecciones/${kebabCase(next.slug)}/`} rel="next">
-                ←
-              </Link>
+      <div className="max-w-4xl p-2 mx-auto bg-indigo-100 md:p-12">
+        <div className="my-12">
+          <h1 className="py-3 font-mono text-3xl font-bold text-indigo-500 border-t border-indigo-500">
+            {post.title}
+          </h1>
+          <div className="w-full mt-2 article" id={post.slug}>
+            {Article && (
+              <div>
+                {documentToReactComponents(
+                  post.childContentfulColeccionTextoPrincipalRichTextNode.json,
+                  options
+                )}
+              </div>
             )}
           </div>
-          <div style={{ justifySelf: "flex-end" }}>
-            {prev && (
-              <Link to={`/colecciones/${kebabCase(prev.slug)}/`} rel="prev">
-                →
-              </Link>
-            )}
-          </div>
-        </nav>
-      </div>
-      <div className="pt-12 mt-6">
-        <h1 className="py-3 text-3xl font-bold text-indigo-500 border-t border-indigo-500">
-          {post.title}
-        </h1>
-        <div className="w-full max-w-2xl m-auto mt-2 article" id={post.slug}>
-          {Article ? (
+        </div>
+        <div className="py-12 text-4xl bg-indigo-100">
+          <nav style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
-              {documentToReactComponents(
-                post.childContentfulColeccionTextoPrincipalRichTextNode.json,
-                options
+              {next && (
+                <Link to={`/colecciones/${kebabCase(next.slug)}/`} rel="next">
+                  ←
+                </Link>
               )}
             </div>
-          ) : null}
+            <div style={{ justifySelf: "flex-end" }}>
+              {prev && (
+                <Link to={`/colecciones/${kebabCase(prev.slug)}/`} rel="prev">
+                  →
+                </Link>
+              )}
+            </div>
+          </nav>
         </div>
       </div>
     </Layout>

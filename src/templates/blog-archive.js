@@ -9,14 +9,14 @@ import tw from "twin.macro"
 import styled from "@emotion/styled"
 
 const PageTitle = styled.h1`
-  ${tw`flex items-center justify-center h-64 text-3xl text-white bg-indigo-800`}
+  ${tw`flex items-center justify-center h-64 font-mono text-5xl font-bold text-white bg-indigo-800`}
 `
 
 const Item = styled.div`
-  ${tw`px-8 py-12 text-left transition-all duration-500 ease-in-out bg-white shadow-md`}
+  ${tw`px-8 py-12 text-center transition-all duration-500 ease-in-out bg-white shadow-md`}
 
   a {
-    ${tw`text-2xl font-bold text-indigo-600 transition-all duration-500 ease-in-out `}
+    ${tw`font-mono text-4xl font-bold text-indigo-600 transition-all duration-500 ease-in-out `}
   }
 
   &:hover {

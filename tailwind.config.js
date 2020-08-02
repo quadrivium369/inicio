@@ -4,9 +4,9 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      sans: ["Monstserrat", "sans-serif"],
-      serif: ["Monstserrat", "sans-serif"],
-      mono: ["Caveat Brush", "sans-serif"],
+      sans: ["Fanwood Text", "sans-serif"],
+      serif: ["Quattrocento", "sans-serif"],
+      mono: ["Fanwood Text", "sans-serif"],
     },
   },
   variants: {},

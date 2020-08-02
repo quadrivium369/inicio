@@ -8,37 +8,46 @@ import Headroom from "react-headroom"
 import tw from "twin.macro"
 import styled from "@emotion/styled"
 
+const routes = [
+  {
+    title: "Inicio",
+    slug: "/",
+  },
+  {
+    title: "Recursos",
+    slug: "/colecciones",
+  },
+  {
+    title: "3D",
+    slug: "/chakana",
+  },
+]
+
 const Header = ({ siteTitle }) => (
   <Headroom disableInlineStyles>
     <HeaderContainer>
       <InnerHeader>
         <Logo>
-          <Link to="/" className="block py-6 text-xl text-black uppercase">
+          <Link
+            to="/"
+            className="block py-6 font-mono text-xl font-bold text-black uppercase"
+          >
             {siteTitle}
           </Link>
         </Logo>
         <Nav>
-          <Link
-            activeClassName="text-indigo-500"
-            className="font-mono text-black "
-            to="/"
-          >
-            Inicio
-          </Link>
-          <Link
-            activeClassName="text-indigo-500"
-            className="font-mono text-black "
-            to="/colecciones"
-          >
-            Recursos
-          </Link>
-          <Link
-            activeClassName="text-indigo-500"
-            className="font-mono text-black "
-            to="/chakana"
-          >
-            3D
-          </Link>
+          {routes.map((route, i) => {
+            return (
+              <Link
+                key={i}
+                activeClassName="text-indigo-500"
+                to={route.slug}
+                className="font-mono text-xl font-bold text-black"
+              >
+                {route.title}
+              </Link>
+            )
+          })}
         </Nav>
       </InnerHeader>
     </HeaderContainer>
